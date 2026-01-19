@@ -75,22 +75,21 @@ The extension provides a configuration option to control clipboard behavior:
 
 ### Option 1: One-line install (no global packages)
 ```bash
-git clone <repository-url> && cd clipboard-swap && npm install && npm run compile && npx @vscode/vsce package && code --install-extension clipboard-diff-swap-1.0.0.vsix
+git clone https://github.com/hrdkmshra/clipboard-diff-swap.git && cd clipboard-diff-swap && npm install && npx vsce package && code --install-extension clipboard-diff-swap-1.0.0.vsix
 ```
 
 ### Option 2: Step by step
 ```bash
-git clone <repository-url>
-cd clipboard-swap
+git clone https://github.com/hrdkmshra/clipboard-diff-swap.git
+cd clipboard-diff-swap
 npm install
-npm run compile
-npx @vscode/vsce package
+npx vsce package
 code --install-extension clipboard-diff-swap-1.0.0.vsix
 ```
 
 ### Option 3: Direct from GitHub (requires git and npm)
 ```bash
-npx degit <github-username>/<repository-name> clipboard-swap && cd clipboard-swap && npm install && npm run compile && npx @vscode/vsce package && code --install-extension clipboard-diff-swap-1.0.0.vsix
+npx degit hrdkmshra/clipboard-diff-swap clipboard-diff-swap && cd clipboard-diff-swap && npm install && npx vsce package && code --install-extension clipboard-diff-swap-1.0.0.vsix
 ```
 
 ### Verification
