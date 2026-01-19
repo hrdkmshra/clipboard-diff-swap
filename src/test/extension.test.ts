@@ -1,6 +1,5 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import * as path from 'path';
 
 suite('Clipboard Diff Swap Extension Test Suite', () => {
 	vscode.window.showInformationMessage('Start all tests.');
@@ -44,7 +43,6 @@ suite('Clipboard Diff Swap Extension Test Suite', () => {
 
 	suite('Functional Tests', () => {
 		let testDocument: vscode.TextDocument;
-		let testEditor: vscode.TextEditor;
 
 		suiteSetup(async () => {
 			// Create a test document
@@ -52,7 +50,7 @@ suite('Clipboard Diff Swap Extension Test Suite', () => {
 				content: 'function test() {\n  return "hello world";\n}',
 				language: 'typescript'
 			});
-			testEditor = await vscode.window.showTextDocument(testDocument);
+			await vscode.window.showTextDocument(testDocument);
 		});
 
 		suiteTeardown(async () => {
@@ -68,7 +66,7 @@ suite('Clipboard Diff Swap Extension Test Suite', () => {
 			try {
 				await vscode.commands.executeCommand('clipboard-swap.compareWithClipboard');
 				assert.fail('Should have thrown an error for empty clipboard');
-			} catch (error) {
+			} catch {
 				// Expected to fail
 				assert.ok(true);
 			}
@@ -148,7 +146,7 @@ suite('Clipboard Diff Swap Extension Test Suite', () => {
 				await vscode.commands.executeCommand('clipboard-swap.compareWithClipboard');
 				// Should not throw but should show error message
 				assert.ok(true, 'Should handle no active editor gracefully');
-			} catch (error) {
+			} catch {
 				assert.fail('Should not throw error, should show user message instead');
 			}
 		});
@@ -175,7 +173,7 @@ suite('Clipboard Diff Swap Extension Test Suite', () => {
 			try {
 				await vscode.commands.executeCommand('workbench.action.compareEditor.swapSides');
 				assert.ok(true, 'Built-in swap command should work');
-			} catch (error) {
+			} catch {
 				// May not work in test environment, but shouldn't crash
 				assert.ok(true, 'Swap command handled gracefully');
 			}
@@ -228,7 +226,7 @@ suite('Clipboard Diff Swap Extension Test Suite', () => {
 			try {
 				await vscode.commands.executeCommand('clipboard-swap.compareWithClipboard');
 				assert.fail('Should reject whitespace-only clipboard');
-			} catch (error) {
+			} catch {
 				assert.ok(true, 'Should reject whitespace-only clipboard');
 			}
 		});
