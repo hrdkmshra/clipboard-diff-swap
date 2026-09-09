@@ -73,24 +73,28 @@ The extension provides a configuration option to control clipboard behavior:
 
 ## Installation
 
-### Option 1: One-line install (no global packages)
-```bash
-git clone https://github.com/hrdkmshra/clipboard-diff-swap.git && cd clipboard-diff-swap && npm install && npx vsce package && code --install-extension clipboard-diff-swap-1.0.0.vsix
-```
-
-### Option 2: Step by step
 ```bash
 git clone https://github.com/hrdkmshra/clipboard-diff-swap.git
 cd clipboard-diff-swap
-npm install
-npx vsce package
-code --install-extension clipboard-diff-swap-1.0.0.vsix
+npm install            # dev tools: bundler, linter, type checker, packager
+./scripts/install.sh   # builds a .vsix and installs it via the VS Code CLI
 ```
 
-### Option 3: Direct from GitHub (requires git and npm)
-```bash
-npx degit hrdkmshra/clipboard-diff-swap clipboard-diff-swap && cd clipboard-diff-swap && npm install && npx vsce package && code --install-extension clipboard-diff-swap-1.0.0.vsix
-```
+Then reload VS Code (`Developer: Reload Window`).
+
+`install.sh` type-checks, lints and bundles before packaging (vsce runs
+`vscode:prepublish` for you), then installs with `code --install-extension`. The `.vsix` is built from
+your working tree and is never committed, so what you install is always the code you have.
+
+Re-run the same script to upgrade after pulling.
+
+Notes if you prefer doing it by hand:
+
+- Use `npx @vscode/vsce package`, **not** `npx vsce` — the bare name resolves to the deprecated
+  `vsce@1.51.1` package.
+- Never symlink the repo into `~/.vscode/extensions` or edit `extensions.json` yourself. That file is
+  the profile's installed-extensions list, not a cache; editing it makes your other extensions look
+  uninstalled.
 
 ### Verification
 
@@ -103,7 +107,7 @@ After installation, verify the extension works:
 ### Uninstallation
 
 ```bash
-code --uninstall-extension clipboard-diff-swap
+code --uninstall-extension clipboard-diff-swap.clipboard-diff-swap
 ```
 
 Or via VS Code UI: Extensions view → Find "Clipboard Diff Swap" → Uninstall

@@ -1,0 +1,17 @@
+# The bundle in dist/ is what ships; nothing else needs to.
+.git/**
+.github/**
+.spec/**
+src/**
+vsix/**
+node_modules/**
+scripts/**
+esbuild.js
+eslint.config.mjs
+tsconfig.json
+package-lock.json
+.npmrc
+.gitignore
+.vscodeignore
+**/*.map
+**/*.ts
